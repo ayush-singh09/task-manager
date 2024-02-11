@@ -9,3 +9,31 @@
 ::selection{
   color:red;
 }
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+ /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+}
+}
+
+@media (max-width:650px) {
+  .content{
+    flex-direction: column;
+    gap: 0;
+  }
+  .sidebar,.songs,.setting,.list,.playlist{
+    width: 100%;
+  }
+  .userBtn{
+    display: none;
+  }
+  .menu{
+    display: block;
+  }
+}
