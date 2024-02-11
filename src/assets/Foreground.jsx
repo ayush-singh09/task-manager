@@ -32,22 +32,22 @@ function Foreground({elementColors, dragable}) {
   }
 
   const [color, setcolor] = useState("");
+
   const [data, setdata] = useState(() => {
     const storedData = localStorage.getItem("taskData");
     return storedData ? JSON.parse(storedData) : [];
   });
   useEffect(() => {
-    localStorage.setItem("taskData", JSON .stringify(data));
+    localStorage.setItem("taskData", JSON.stringify(data));
   }, [data]);
 
   const colorChange = (e)=>{
     setcolor(e.target.value);
   }
-
   const [text, settext] = useState("");
 
   return (
-    <div ref={ref} className='h-screen w-full fixed z-10 p-5 flex flex-wrap gap-5 overflow-y-scroll'>
+    <div ref={ref} className='foreground h-screen w-full fixed z-10 p-5 flex flex-wrap gap-5 overflow-y-scroll overflow-x-hidden no-scrollbar'>
 
       <motion.div {...(dragable ? { drag: true } : {})} dragConstraints={ref} className={`w-56 h-fit ${elementColors.inputCardBg} rounded-[20px] p-5 flex flex-col gap-3`}>
         <h1 className={`${elementColors.inputHead} px-1 py-1 font-bold text-lg`}>Input Card</h1>
@@ -69,19 +69,19 @@ function Foreground({elementColors, dragable}) {
             
             if(text!="" && color!="")
             {
-              setdata([...data,{dets:text, color:color}]);
+              setdata([{dets:text, color:color},...data]);
               setcolor("")            }
             else alert("Please enter details.");
           }
         } className={`${elementColors.inputFieldBg} ${elementColors.saveText}  px-4 py-1 w-full mt-2 rounded border-2 ${elementColors.inputBorder}`}>Save</button>
       </motion.div>
 
-      <motion.div {...(dragable ? { drag: true } : {})} dragConstraints={ref} whileDrag={{ scale: 1.05 }} className={`${elementColors.cardBg} h-72 w-56 rounded-[35px] ${elementColors.cardText} relative overflow-hidden`}>
-        <div className="p-5 flex flex-col h-60 justify-around">
-            <CgNotes size={15+"px"}/>
-            <h1 className="leading-normal text-sm">You can add new tasks as a card in this portal from the input card.  You can also drag and drop the cards to reorder them. Select the color according to the importance of the Task</h1>
+      <motion.div {...(dragable ? { drag: true } : {})} dragConstraints={ref} whileDrag={{ scale: 1.05 }} className={`${elementColors.cardBg} h-72 w-56 card rounded-[35px] ${elementColors.cardText} relative overflow-hidden`}>
+        <div className="p-5  flex flex-col h-[84%] justify-around">
+            <div className="h-[16%] p-1"><CgNotes size={15+"px"}/></div>
+            <h1 className="details flex items-center leading-normal h-[84%] text-sm">You can add new tasks as a card in this portal from the input card.  You can also drag and drop the cards to reorder them. Select the color according to the importance of the Task</h1>
          </div>
-        <div className={`h-12 w-full bg-red-600 absolute bottom-0 flex justify-center items-center`}>
+        <div className={`h-[16%] w-full bg-red-600 absolute bottom-0 flex justify-center items-center`}>
             <h1 className=" text-zinc-100 font-sans">IMPORTANT</h1>
         </div>
 

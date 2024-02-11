@@ -22,18 +22,22 @@
 }
 }
 
-@media (max-width:650px) {
-  .content{
-    flex-direction: column;
-    gap: 0;
-  }
-  .sidebar,.songs,.setting,.list,.playlist{
+
+@media (max-width:600px) {
+  .card{
+    height: 290px;
     width: 100%;
   }
-  .userBtn{
-    display: none;
+  .inside{
+    justify-content: space-between;
   }
-  .menu{
-    display: block;
+  .details{
+    font-size: 13px;
+  }
+  .docs{
+    font-size: 100px;
+  }
+  .foreground{
+    justify-content: center;
   }
 }
